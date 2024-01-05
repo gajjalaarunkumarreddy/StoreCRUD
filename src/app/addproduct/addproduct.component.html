@@ -1,0 +1,30 @@
+<div class="container">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" style="width: 500px;margin: 50px auto;">
+        <h1 class="mb-3">Add Product</h1>
+        <div class="mb-3">
+            <label for="title" class="form-label">Title:</label>
+            <input type="text" placeholder="Enter title here" id="title" formControlName="title" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price:</label>
+            <input type="number" placeholder="$ Price" id="price" formControlName="price" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description:</label>
+            <textarea id="description" placeholder="Describe the item..." rows="5" formControlName="description" class="form-control"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="category" class="form-label">Category:</label>
+            <select id="category" placeholder="Choose an option" formControlName="categoryId" class="form-control">
+                <option value="" disabled>Select Category</option>
+                <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="images" class="form-label">Images:</label>
+            <input type="file" id="images" (change)="onFileSelected($event)" class="form-control">
+        </div>
+        <button type="submit" [disabled]="!productForm.valid" class="btn btn-primary me-1">Submit</button>&nbsp;
+        <button type="button" (click)="resetForm()" class="btn btn-secondary">Reset Form</button>
+    </form>
+</div>
